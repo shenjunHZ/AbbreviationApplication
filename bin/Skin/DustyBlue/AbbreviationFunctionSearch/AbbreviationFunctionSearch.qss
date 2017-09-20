@@ -1,0 +1,4 @@
+QListWidget#m_listWidgetDefinition::item
+{
+	height: 96px;
+}

@@ -1,0 +1,26 @@
+QPushButton#m_btnIcon
+{
+	border-image: url(skin/DustyBlue/MainAppWidget/5G_Icon_n.png) center center;
+}
+
+QPushButton#m_btnConfig
+{
+	border-image: url(skin/DustyBlue/MainAppWidget/general-n.png) center center;
+}
+QPushButton#m_btnConfig:hover
+{
+  border-image: url(skin/DustyBlue/MainAppWidget/general-h.png) center center;
+}
+QPushButton#m_btnConfig:pressed
+{
+  border-image: url(skin/DustyBlue/MainAppWidget/general-p.png) center center;
+}
+QPushButton#m_btnConfig:disabled
+{
+  border-image: url(skin/DustyBlue/MainAppWidget/general-n.png) center center;
+}
+
+DSGUI--DSSearchEdit QWidget#widgetBk
+{
+	border-radius:15px;
+}

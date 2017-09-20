@@ -1,0 +1,4 @@
+QWidget#ConfigSQLConnectInfo
+{
+	background-color: rgb(43,47,51);
+}
