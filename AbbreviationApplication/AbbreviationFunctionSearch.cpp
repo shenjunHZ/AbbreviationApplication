@@ -5,6 +5,8 @@
 #include "MysqlDB.h"
 
 #include <map>
+#include <QtGui/QDesktopServices>
+#include <QtCore/QUrl>
 
 namespace mainApp
 {
@@ -37,6 +39,8 @@ namespace mainApp
 	void AbbreviationFunctionSearch::ConnectSgn()
 	{
 		connect(m_pUi->m_listWidgetDefinition, SIGNAL(sgnDeleteDefinition(uint64_t, QListWidgetItem*)), this, SLOT(OnDeleteDefinition(uint64_t, QListWidgetItem*)));
+		// 某人给我提的是网址的话，可以双击打开
+		connect(m_pUi->m_listWidgetDefinition, SIGNAL(itemDoubleClicked(QListWidgetItem*)),             this, SLOT(OnItemDoubleClicked(QListWidgetItem*)));
 	}
 
 	bool AbbreviationFunctionSearch::SetAcronymText(const QString& strText)
@@ -82,7 +86,8 @@ namespace mainApp
 				QListWidgetItem *pItem = new QListWidgetItem(strIndex + ".  " + strDefinition);
 				if (0 == iIndex % 2)
 				{
-					pItem->setBackgroundColor(QColor(201, 81, 0));
+					//pItem->setBackgroundColor(QColor(201, 81, 0));
+					pItem->setBackgroundColor(QColor(58, 62, 67));
 				}
 				else
 				{
@@ -147,6 +152,48 @@ namespace mainApp
 	void AbbreviationFunctionSearch::OnDeleteDefinition(uint64_t iPrimaryKey, QListWidgetItem* pItem)
 	{
 		DeleteDefinition(iPrimaryKey, pItem);
+	}
+
+	void AbbreviationFunctionSearch::OnItemDoubleClicked(QListWidgetItem* pItem)
+	{
+		if (nullptr == pItem)
+		{
+			return;
+		}
+
+		QString strHttp = "";
+		std::count_if(m_vecDefinitionInfos.begin(), m_vecDefinitionInfos.end(),
+			[&strHttp, pItem] (SqliteDB::AbbreviationInfo_s info) 
+		{
+			if (pItem->data(Qt::UserRole).toInt() == info.iPrimaryKey)
+			{
+				QString strDefinition = QString::fromStdString(info.strDefinition);
+				if (strDefinition.contains("http://"))
+				{
+					int iIdex = strDefinition.indexOf("http://");
+					if (iIdex >= 0)
+					{
+						strHttp = strDefinition.left(iIdex);
+						return true;
+					}
+				}
+				else if (strDefinition.contains("https://"))
+				{
+					int iIdex = strDefinition.indexOf("https://");
+					if (iIdex >= 0)
+					{
+						strHttp = strDefinition.mid(iIdex);
+						return true;
+					}
+				}
+			}
+			return false;
+		});
+
+		if (!strHttp.isEmpty())
+		{
+			QDesktopServices::openUrl(QUrl(strHttp));
+		}
 	}
 
 	bool AbbreviationFunctionSearch::DeleteDefinition(uint64_t iPrimaryKey, QListWidgetItem* pItem)
