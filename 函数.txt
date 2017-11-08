@@ -1,0 +1,112 @@
+
+函数2：  全部打印
+输出那么表中所有的信息：
+
+/**
+ * 输出 abbreviations表里所有的 id, name, expression
+ */
+void outputIdNameExpression() {
+    QSqlQuery query("SELECT id, name, expression FROM abbreviations");
+    
+    while (query.next()) {
+        qDebug() << QString("Id: %1, name: %2, expression: %3")
+                    .arg(query.value("id").toInt())
+                    .arg(query.value("name").toString())
+                    .arg(query.value("expression").toString());
+    }
+}
+
+
+
+--------------------------------------
+
+函数4：根据名字传出的不是一组信息，而是单个信息     查
+
+使用 Prepared Query 可以避免SQL 注入攻击。
+/**
+ * 输出 每条的信息 其 name 等于传入的参数 name
+ * @param username
+ */
+vector<string> outputWithPreparedQuery(const QString &name) {
+    QString sql = "SELECT * FROM abbreviations WHERE name=:name";
+    QSqlQuery query;    // [1] 可以传入数据库连接，但是不能传入 SQL 语句
+    query.prepare(sql); // [2] 声明使用 prepqred 的方式解析 SQL 语句
+
+    query.bindValue(":name", name); // [3] 把占位符替换为传入的参数
+    query.exec(); // [4] 执行数据库操作
+    vector<string>outPutExpression;
+    while (query.next())  // [5]进行遍历
+	{
+	string output=query.value("expression").toString();
+	outPutExpression.pushback(output);
+	}
+	return  outPutExpression;
+#if 0
+        qDebug() << QString("Id: %1, name: %2, expression: %3")
+                    .arg(query.value("id").toInt())
+                    .arg(query.value("name").toString())
+                    .arg(query.value("expression").toString());
+#endif
+}
+
+
+-------------------------------------
+函数5：  删
+删除记录：
+void deleteQuery(const int id){
+      QSqlQuery query；
+      bool  value；
+      value = query.exec("delete from abbreviations where ID = id")；//delete from abbreviations where ID = '" + id + "' 自己改过的
+      if(value)
+                          QMessageBox::information（this，"notice","delete sucessful!"）;
+      else
+                          QMessageBox::information（this，"notice","delete failed!"）;
+}
+
+
+
+-----------------------------------
+函数6：   增
+增加记录：
+int addQuery(const QString &name,const QString &expression)
+{	
+//获取最后一行的id号
+	int lastId;
+// 最后一条：select * from表名 order by 表_id desc limit 1
+	QString sql = "select * from table3 order by id desc limit 1";//获取最后一行信息
+	QSqlQuery query(sql);
+	while (query.next()) 
+		lastId=query.value("id").toInt();
+#if 0
+        qDebug() << QString("Id: %1, Username: %2, Password: %3")
+                    .arg(query.value("id").toInt())
+                    .arg(query.value("username").toString())
+                    .arg(query.value("password").toString());
+#endif
+//插入新的一行信息
+	int newId=lastID+1；
+	QSqlQuery query;//上面构造了个对象，后面又构造了个对象不知道是否会出错
+    	query.prepare("INSERT INTO abbreviations (id,name, expression) VALUES (:id, :name, :expression)");
+//http://blog.csdn.net/tian_110/article/details/45151701
+	query.bindValue(":id", newId);//这个是数字
+    	query.bindValue(":name", name);
+   	query.bindValue(":expression", expression);
+    	query.exec();
+	rerurn newId;
+}
+
+
+-------------------------------------------
+函数7：   改  
+
+改信息：
+void changeQuery(const int &id,const QString &name,const QString &expression)
+{
+	QSqlQuery changequery;
+	changequery.prepare("update `temset` set `id`=?, `name`=? ,`expression`=?,`);
+	changequery.bindValue(":id",id);
+	changequery.bindValue(":name",name);
+	changequery.bindValue(":expression",expression);
+	query.exec();
+}
+--------------
