@@ -24,7 +24,6 @@ namespace mainApp
 	{
 		//qRegisterMetaType<uint64_t>("uint64_t");
 		connect(m_pRightAction, SIGNAL(sgnDeleteDefinition(uint64_t, QListWidgetItem*)), this, SIGNAL(sgnDeleteDefinition(uint64_t, QListWidgetItem*)));
-		//printf("this is test point.");
 	}
 
 	void ListWidgetDefinition::contextMenuEvent(QContextMenuEvent *ev)

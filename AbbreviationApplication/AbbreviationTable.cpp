@@ -167,7 +167,7 @@ namespace SqliteDB
 		char szSelectSql[1024] = { 0 };
 
 		dsl::DStr::sprintf_x(szSelectSql, sizeof(szSelectSql),
-			"SELECT * FROM %s WHERE ACRONYM = '%s';",
+			"SELECT * FROM %s WHERE ACRONYM = '%s' COLLATE NOCASE;",
 			m_strTableName.c_str(), strAcronym.c_str());
 
 		//Common::DSMutexLock mutexGuard(m_mtxData);

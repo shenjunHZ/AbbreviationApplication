@@ -173,7 +173,7 @@ namespace mainApp
 					int iIdex = strDefinition.indexOf("http://");
 					if (iIdex >= 0)
 					{
-						strHttp = strDefinition.left(iIdex);
+						strHttp = strDefinition.mid(iIdex);
 						return true;
 					}
 				}

@@ -56,6 +56,7 @@ namespace mainApp
 
 	private slots:
 		void OnDeleteDefinition(uint64_t iPrimaryKey, QListWidgetItem* pItem);
+		void OnItemDoubleClicked(QListWidgetItem* pItem);
 
 	private:
 		Ui::AbbreviationFunctionSearch* m_pUi;
