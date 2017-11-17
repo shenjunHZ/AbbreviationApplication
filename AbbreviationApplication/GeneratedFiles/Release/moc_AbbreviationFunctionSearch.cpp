@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_mainApp__AbbreviationFunctionSearch_t {
-    QByteArrayData data[7];
-    char stringdata0[100];
+    QByteArrayData data[8];
+    char stringdata0[120];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,12 +35,13 @@ QT_MOC_LITERAL(2, 55, 0), // ""
 QT_MOC_LITERAL(3, 56, 8), // "uint64_t"
 QT_MOC_LITERAL(4, 65, 11), // "iPrimaryKey"
 QT_MOC_LITERAL(5, 77, 16), // "QListWidgetItem*"
-QT_MOC_LITERAL(6, 94, 5) // "pItem"
+QT_MOC_LITERAL(6, 94, 5), // "pItem"
+QT_MOC_LITERAL(7, 100, 19) // "OnItemDoubleClicked"
 
     },
     "mainApp::AbbreviationFunctionSearch\0"
     "OnDeleteDefinition\0\0uint64_t\0iPrimaryKey\0"
-    "QListWidgetItem*\0pItem"
+    "QListWidgetItem*\0pItem\0OnItemDoubleClicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -50,7 +51,7 @@ static const uint qt_meta_data_mainApp__AbbreviationFunctionSearch[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -58,10 +59,12 @@ static const uint qt_meta_data_mainApp__AbbreviationFunctionSearch[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,   19,    2, 0x08 /* Private */,
+       1,    2,   24,    2, 0x08 /* Private */,
+       7,    1,   29,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3, 0x80000000 | 5,    4,    6,
+    QMetaType::Void, 0x80000000 | 5,    6,
 
        0        // eod
 };
@@ -73,6 +76,7 @@ void mainApp::AbbreviationFunctionSearch::qt_static_metacall(QObject *_o, QMetaO
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->OnDeleteDefinition((*reinterpret_cast< uint64_t(*)>(_a[1])),(*reinterpret_cast< QListWidgetItem*(*)>(_a[2]))); break;
+        case 1: _t->OnItemDoubleClicked((*reinterpret_cast< QListWidgetItem*(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -103,13 +107,13 @@ int mainApp::AbbreviationFunctionSearch::qt_metacall(QMetaObject::Call _c, int _
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 2)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }
