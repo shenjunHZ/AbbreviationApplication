@@ -9,7 +9,7 @@
 #include <QtGui/QDesktopServices>
 #include <QtCore/QUrl>
 
-const int g_iDefinitionOffset = 3;
+const int g_iDefinitionOffset = 4;
 
 namespace mainApp
 {
@@ -85,15 +85,20 @@ namespace mainApp
     bool AbbreviationFunctionSearch::AddDefinition(const std::vector<SqliteDB::AbbreviationInfo_s>& vecDefinition)
     {
         //QStringList strList;
-
         for (int iIndex = 0; iIndex < vecDefinition.size(); iIndex++)
         {
             //strList.push_back(QString::fromStdString(vecDefinition[iIndex].strDefinition));
             QString strDefinition = QString::fromStdString(vecDefinition[iIndex].strDefinition);
-            if ("" != strDefinition)
+            if (!strDefinition.isEmpty())
             {
                 QString strIndex = QString::number(iIndex + 1);
                 QListWidgetItem *pItem = new QListWidgetItem(strIndex + ".  " + strDefinition);
+                QFont font = pItem->font();
+                font.setPixelSize(16);
+                pItem->setFont(font);
+                QStringList strList = strDefinition.split("\n");
+                pItem->setTextAlignment(Qt::AlignTop | Qt::AlignLeft);
+                //pItem->setToolTip(strDefinition);
                 if (0 == iIndex % 2)
                 {
                     //pItem->setBackgroundColor(QColor(201, 81, 0));
@@ -105,6 +110,8 @@ namespace mainApp
                 }
                 pItem->setFlags(pItem->flags() & ~Qt::ItemIsSelectable);
                 pItem->setData(Qt::UserRole, vecDefinition[iIndex].iPrimaryKey); // ´æÈëÖ÷¼üÖµ
+                QSize size(100, 40 * strList.size());
+                pItem->setSizeHint(size);
                 m_pUi->m_listWidgetDefinition->addItem(pItem);
             }
         }
@@ -266,7 +273,7 @@ namespace mainApp
         }
 
         QString strText = pItem->text();
-        QString strDefinetion = strText.right(strText.length() - 1 - g_iDefinitionOffset);
+        QString strDefinetion = strText.right(strText.length() - g_iDefinitionOffset);
         QRect rect = this->geometry();
         QPoint point = mapToGlobal(this->pos());
         m_pModifyDefinitionDialog->setGeometry((point.x() + (this->width() - m_pModifyDefinitionDialog->width()) / 2),
