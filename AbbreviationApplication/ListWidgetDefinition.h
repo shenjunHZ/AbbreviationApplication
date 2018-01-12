@@ -12,27 +12,28 @@
 
 namespace mainApp
 {
-	class ListWidgetItemRightAction;
+    class ListWidgetItemRightAction;
 
-	class ListWidgetDefinition : public QListWidget
-	{
-		Q_OBJECT
+    class ListWidgetDefinition : public QListWidget
+    {
+        Q_OBJECT
 
-	public:
-		ListWidgetDefinition(QWidget* pParent = nullptr);
-		~ListWidgetDefinition();
+    public:
+        ListWidgetDefinition(QWidget* pParent = nullptr);
+        ~ListWidgetDefinition();
 
-	signals:
-		void sgnDeleteDefinition(uint64_t iPrimaryKey, QListWidgetItem* pItem);
+    signals:
+        void sgnDeleteDefinition(uint64_t iPrimaryKey, QListWidgetItem* pItem);
+        void sgnEditDefinition(uint64_t iPrimaryKey, QListWidgetItem* pItem);
 
-	protected:
-		void contextMenuEvent(QContextMenuEvent *ev);
+    protected:
+        void contextMenuEvent(QContextMenuEvent *ev);
 
-	private:
-		void ConnectSgn();
+    private:
+        void ConnectSgn();
 
-	private:
-		ListWidgetItemRightAction*   m_pRightAction;
-	};
+    private:
+        ListWidgetItemRightAction*   m_pRightAction;
+    };
 
 } // end namespace mainApp

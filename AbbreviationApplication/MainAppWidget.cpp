@@ -40,8 +40,11 @@ namespace mainApp
 
 		// move to middle
 		QDesktopWidget* pDeskWidget = QApplication::desktop();
-		int iWidth = pDeskWidget->width();
-		int iHeight = pDeskWidget->height();
+        int iScreen = pDeskWidget->primaryScreen(); // use primary screen for show
+        QWidget* pPrimaryScreen = pDeskWidget->screen(iScreen);
+
+		int iWidth = pPrimaryScreen->width();
+		int iHeight = pPrimaryScreen->height();
 		this->move((iWidth - width()) / 2, (iHeight - height()) / 2);
 
 		OpenSqlitDB();

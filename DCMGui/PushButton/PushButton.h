@@ -17,31 +17,31 @@
 
 namespace DSGUI
 {
-	/** @class DSPushButton
-	  * @brief 按钮
+    /** @class DSPushButton
+      * @brief 按钮
       * 
-	  */
-	class DS_GUI_EXPORT DSPushButton : public QPushButton
-	{
-		Q_OBJECT
-	public:
-		//构造
-		DSPushButton(QWidget* pParent = NULL);
-		DSPushButton(const QString& strText, QWidget* pParent = NULL);
-		DSPushButton(const QIcon& icnIcon, const QString& strText, QWidget* pParent = NULL);
-		
+      */
+    class DS_GUI_EXPORT DSPushButton : public QPushButton
+    {
+        Q_OBJECT
+    public:
+        //构造
+        DSPushButton(QWidget* pParent = NULL);
+        DSPushButton(const QString& strText, QWidget* pParent = NULL);
+        DSPushButton(const QIcon& icnIcon, const QString& strText, QWidget* pParent = NULL);
+        
     protected:
-		// 初始化风格
-		void initStyleOption(QStyleOptionButton* pOpt) const;
-		// 绘图
-		virtual void paintEvent(QPaintEvent* pPaintEvent);
+        // 初始化风格
+        void initStyleOption(QStyleOptionButton* pOpt) const;
+        // 绘图
+        virtual void paintEvent(QPaintEvent* pPaintEvent);
 
-	#ifdef Q_WS_MAC
-		// 重载掉为了让MAC平台跟windows效果一致
-		virtual bool hitButton(const QPoint& ptPos) const;
-	#endif
+    #ifdef Q_WS_MAC
+        // 重载掉为了让MAC平台跟windows效果一致
+        virtual bool hitButton(const QPoint& ptPos) const;
+    #endif
 
-	};
+    };
 }
 
 #endif

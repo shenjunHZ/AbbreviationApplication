@@ -23,10 +23,10 @@ namespace DSGUI
     /** @class DSDialog
      *  @brief 对话框
      */
-	class DS_GUI_EXPORT DSDialog 
+    class DS_GUI_EXPORT DSDialog 
         : public QDialog
-	{
-		Q_OBJECT
+    {
+        Q_OBJECT
         Q_ENUMS(DialogFlag)
         Q_PROPERTY(QPixmap pixBorderImage READ GetBorderImage WRITE SetBorderImage)
     public:
@@ -43,32 +43,32 @@ namespace DSGUI
         };
         Q_DECLARE_FLAGS(DialogFlags, DialogFlag)
 
-	public:
+    public:
         // 构造，参数2配置关闭，最小化和最大化是否显示，具体可用参数如下
-		DSDialog(QWidget* pParent = NULL, DialogFlags enumDialogFlags = 0);
-		~DSDialog();
+        DSDialog(QWidget* pParent = NULL, DialogFlags enumDialogFlags = 0);
+        ~DSDialog();
 
-	public:
-		// 设置标题文字
-		void SetTitle(const QString& strTitle);
-		// 获取标题文字
-		QString GetTitle() const;
+    public:
+        // 设置标题文字
+        void SetTitle(const QString& strTitle);
+        // 获取标题文字
+        QString GetTitle() const;
         // 设置标题显示方式
         void SetTitleAlignment(Qt::Alignment enumAlignment);
         // 在关闭按钮左侧添加控件
         void InsertTitleWidget(QWidget* pWidget, int iIndex = 0);
         // 双击标题可最大化和还原
         void SetOpenDoubleClickTitle(bool bOpen);
-		//是否开启退出动效
-		void SetCloseAnimaEnable(bool bOpen);
+        //是否开启退出动效
+        void SetCloseAnimaEnable(bool bOpen);
 
     public:
-		// 添加中间的窗口
-		void AddCentralWidget(QWidget* pWidget);
-		// 获取中间的窗口
-		QWidget* GetCentralWidget() const;
-		// 隐藏窗口标题
-		void SetTitleHide(bool bhide = true);
+        // 添加中间的窗口
+        void AddCentralWidget(QWidget* pWidget);
+        // 获取中间的窗口
+        QWidget* GetCentralWidget() const;
+        // 隐藏窗口标题
+        void SetTitleHide(bool bhide = true);
 
     public:
         // 是否打开 改变窗口大小
@@ -78,17 +78,17 @@ namespace DSGUI
         // 关闭按钮响应，重载此接口可过滤默认关闭按钮重载
         virtual void OnCloseBtmClicked();
 
-	protected:
-		// 处理圆角
-		virtual void resizeEvent(QResizeEvent* pEvent);
-		// 过滤键盘Key_Escape等事件
-		virtual void keyPressEvent(QKeyEvent* pEvent);
-		virtual void moveEvent(QMoveEvent *event);
-		virtual void done(int);
+    protected:
+        // 处理圆角
+        virtual void resizeEvent(QResizeEvent* pEvent);
+        // 过滤键盘Key_Escape等事件
+        virtual void keyPressEvent(QKeyEvent* pEvent);
+        virtual void moveEvent(QMoveEvent *event);
+        virtual void done(int);
 
-	protected slots:
-		// 切换最大按钮 最大化和还原 tooltip
-		void OnTurnMaximizeButtonTip();
+    protected slots:
+        // 切换最大按钮 最大化和还原 tooltip
+        void OnTurnMaximizeButtonTip();
 
     private:
         // 设置图片
@@ -103,8 +103,8 @@ namespace DSGUI
         Q_DECLARE_PRIVATE(DSDialog)
         Q_DISABLE_COPY(DSDialog)
         Q_PRIVATE_SLOT(d_func(), void OnSizeStatusChanged())
-		Q_PRIVATE_SLOT(d_func(), void OnDoneAnimaFinished())
-	private:
+        Q_PRIVATE_SLOT(d_func(), void OnDoneAnimaFinished())
+    private:
         QScopedPointer<Ui_CDialogUI> m_ptDialogUI;
     };
 }

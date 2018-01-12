@@ -16,26 +16,27 @@
 
 namespace mainApp
 {
-	class ListWidgetItemRightAction : public QObject
-	{
-		Q_OBJECT
+    class ListWidgetItemRightAction : public QObject
+    {
+        Q_OBJECT
 
-	public:
-		ListWidgetItemRightAction(QWidget* pParent, DSGUI::DSMenu* pMenu = nullptr);
-		virtual ~ListWidgetItemRightAction();
+    public:
+        ListWidgetItemRightAction(QWidget* pParent, DSGUI::DSMenu* pMenu = nullptr);
+        virtual ~ListWidgetItemRightAction();
 
-		virtual int DoAction(uint64_t iPrimaryKey, QListWidgetItem* pItem);
+        virtual int DoAction(uint64_t iPrimaryKey, QListWidgetItem* pItem);
 
-	signals:
-		void sgnDeleteDefinition(uint64_t iPrimaryKey, QListWidgetItem* pItem);
+    signals:
+        void sgnDeleteDefinition(uint64_t iPrimaryKey, QListWidgetItem* pItem);
+        void sgnEditDefinition(uint64_t iPrimaryKey, QListWidgetItem* pItem);
 
-	private:
-		void Do(QAction* pAction, uint64_t iPrimaryKey, QListWidgetItem* pItem);
-		void initUi();
+    private:
+        void Do(QAction* pAction, uint64_t iPrimaryKey, QListWidgetItem* pItem);
+        void initUi();
 
-	private:
-		DSGUI::DSMenu*     m_pMenu;
-		QAction*           m_pActDelete;
-		QAction*           m_pActUpdate;  // 功能暂时不加
-	};
+    private:
+        DSGUI::DSMenu*     m_pMenu;
+        QAction*           m_pActDelete;
+        QAction*           m_pActUpdate; 
+    };
 }
